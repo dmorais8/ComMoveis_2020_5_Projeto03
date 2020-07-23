@@ -38,7 +38,7 @@ MODULATION_AND_CODE_RATE = {
 MIMO = {'1': 1, '2': 2, '4': 4, '8': 8}
 
 data_folder = Path("assets/")
-csv_file = data_folder / "TBSPRB.csv"
+csv_file = data_folder / "tbs_size_table.csv"
 
 tbs_size_table = np.genfromtxt(csv_file, delimiter=",", skip_header=1, dtype=int)
 
@@ -53,7 +53,8 @@ def calc_lte_troughtput(bandwidth, mcs, mimo_type, cyclic_prefix_type, component
     ca = int(component_carriers)
     nre = 12 * cyclic_prefix
     troughput_table = (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3
-    troughput_equation = nre * MODULATION_AND_CODE_RATE[mcs]["MOD"] * mimo * 2 * num_prbs * 0.75 * ca * 0.001
+
+    troughput_equation = (nre * MODULATION_AND_CODE_RATE[mcs]["MOD"] * mimo * 2 * num_prbs * 0.75 * ca) / 1_000
 
     return {
         'TROUGHPUT_TABLE': float(f'{troughput_table:.2f}'),
