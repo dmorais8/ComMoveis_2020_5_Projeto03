@@ -12,7 +12,8 @@ PRB_PER_BW = {
     '5': (5, 25),
     '10': (10, 50),
     '15': (15, 75),
-    '20': (20, 100)
+    '20': (20, 100),
+    '100': (100, 100)
 
 }
 
@@ -56,6 +57,15 @@ def calc_troughtput_from_table(bandwidth, mcs, mimo_type, cyclic_prefix_type, co
     print(f'BITS: {bits_from_tbs_size_table}')
     print(f'MODULATION: {MODULATION_AND_CODE_RATE[mcs]["MOD"]}')
     print(f'CP: {cyclic_prefix}')
+    print(f'RE: {12*cyclic_prefix}')
 
-    return (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3
+    return {
+        'TROUGHPUT': (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3,
+        'PRBS': num_prbs,
+        'TBSINDEX': tbs_index,
+        'TBSVALUE': bits_from_tbs_size_table,
+        'MODULATION': 2 ** MODULATION_AND_CODE_RATE[mcs]["MOD"],
+        'NRE': 12 * cyclic_prefix,
+        'SYMBOLSQTD': cyclic_prefix
+    }
 
