@@ -200,7 +200,6 @@ class Ui_MainWindow(object):
 "  padding: 15px 32px;\n"
 "  text-align: center;\n"
 "  text-decoration: none;\n"
-"  display: inline-block;\n"
 "  font-size: 16px;")
         self.btnCalcTPut.setObjectName("btnCalcTPut")
         self.gridLayout.addWidget(self.btnCalcTPut, 8, 2, 1, 1)
