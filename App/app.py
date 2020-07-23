@@ -1,7 +1,7 @@
 import sys
 from CalcTPutUI import *
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from functions import calc_troughtput_from_table
+from functions import calc_lte_troughtput
 
 
 class CalcTPUT(QMainWindow, Ui_MainWindow):
@@ -10,9 +10,9 @@ class CalcTPUT(QMainWindow, Ui_MainWindow):
         super().__init__(parent)
         super().setupUi(self)
 
-        self.btnCalcTPut.clicked.connect(self.calc_troughput)
+        self.btnCalcTPut.clicked.connect(self.calc_button_action)
 
-    def calc_troughput(self):
+    def calc_button_action(self):
 
         bandwidth = self.comboBanda.currentText()
         mcs = self.comboMCS.currentText()
@@ -20,14 +20,7 @@ class CalcTPUT(QMainWindow, Ui_MainWindow):
         cp = self.comboPrefixCycle.currentText()
         ca = self.comboCarrierAgg.currentText()
 
-        print(f'BANDA: {bandwidth}')
-        print(f'MCS: {mcs}')
-        print(f'MIMO: {mimo}')
-        print(f'CP: {cp}')
-        print(f'CA: {ca}')
-
-        calc_data = calc_troughtput_from_table(bandwidth, mcs, mimo, cp, ca)
-        print(f'{calc_data["TROUGHPUT"]} Mbps')
+        calc_data = calc_lte_troughtput(bandwidth, mcs, mimo, cp, ca)
 
         self.outputPRB.setAlignment(QtCore.Qt.AlignCenter)
         self.outputPRB.setText(str(calc_data['PRBS']))
@@ -47,7 +40,8 @@ class CalcTPUT(QMainWindow, Ui_MainWindow):
         self.outputQtdSimbolos.setAlignment(QtCore.Qt.AlignCenter)
         self.outputQtdSimbolos.setText(str(calc_data['SYMBOLSQTD']))
 
-        self.outputTabela.setText(f'{calc_data["TROUGHPUT"]} Mbps')
+        self.outputTabela.setText(f'{calc_data["TROUGHPUT_TABLE"]} Mbps')
+        self.outputEquacao.setText(f'{calc_data["TROUGHPUT_EQUATION"]} Mbps')
 
 
 if __name__ == '__main__':

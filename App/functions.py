@@ -43,7 +43,7 @@ csv_file = data_folder / "TBSPRB.csv"
 tbs_size_table = np.genfromtxt(csv_file, delimiter=",", skip_header=1, dtype=int)
 
 
-def calc_troughtput_from_table(bandwidth, mcs, mimo_type, cyclic_prefix_type, component_carriers):
+def calc_lte_troughtput(bandwidth, mcs, mimo_type, cyclic_prefix_type, component_carriers):
 
     num_prbs = PRB_PER_BW[bandwidth][1]
     tbs_index = MODULATION_AND_CODE_RATE[mcs]['TBSINDEX']
@@ -51,21 +51,17 @@ def calc_troughtput_from_table(bandwidth, mcs, mimo_type, cyclic_prefix_type, co
     mimo = MIMO[mimo_type]
     cyclic_prefix = CYCLIC_PREFIX[cyclic_prefix_type]['SYMBOLS']
     ca = int(component_carriers)
-
-    print(f'PRBS: {num_prbs}')
-    print(f'TBSINDEX: {tbs_index}')
-    print(f'BITS: {bits_from_tbs_size_table}')
-    print(f'MODULATION: {MODULATION_AND_CODE_RATE[mcs]["MOD"]}')
-    print(f'CP: {cyclic_prefix}')
-    print(f'RE: {12*cyclic_prefix}')
+    nre = 12 * cyclic_prefix
+    troughput_table = (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3
+    troughput_equation = nre * MODULATION_AND_CODE_RATE[mcs]["MOD"] * mimo * 2 * num_prbs * 0.75 * ca * 0.001
 
     return {
-        'TROUGHPUT': (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3,
+        'TROUGHPUT_TABLE': float(f'{troughput_table:.2f}'),
+        'TROUGHPUT_EQUATION': float(f'{troughput_equation:.2f}'),
         'PRBS': num_prbs,
         'TBSINDEX': tbs_index,
         'TBSVALUE': bits_from_tbs_size_table,
         'MODULATION': 2 ** MODULATION_AND_CODE_RATE[mcs]["MOD"],
-        'NRE': 12 * cyclic_prefix,
+        'NRE': nre,
         'SYMBOLSQTD': cyclic_prefix
     }
-
