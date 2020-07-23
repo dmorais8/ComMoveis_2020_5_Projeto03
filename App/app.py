@@ -9,6 +9,7 @@ class CalcTPUT(QMainWindow, Ui_MainWindow):
 
         super().__init__(parent)
         super().setupUi(self)
+        self.setWindowTitle('Calculadora LTE-Advanced')
 
         self.btnCalcTPut.clicked.connect(self.calc_button_action)
 
