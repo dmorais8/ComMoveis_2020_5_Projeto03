@@ -6,157 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>866</width>
-    <height>624</height>
+    <width>593</width>
+    <height>579</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: white;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="5" column="1" colspan="2">
-     <widget class="QFrame" name="outputParamsDataFrame">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="4" column="1">
-        <widget class="QLineEdit" name="outputTbsIndex">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="2">
-        <widget class="QLineEdit" name="ouputTbsValue">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="4" colspan="2">
-        <widget class="QLabel" name="label_13">
-         <property name="text">
-          <string>Modulacao</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLineEdit" name="outputPRB">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_17">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Parametros de Saida</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="6">
-        <widget class="QLineEdit" name="outputNumRE">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_11">
-         <property name="text">
-          <string>PRB</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2" colspan="2">
-        <widget class="QLabel" name="label_12">
-         <property name="text">
-          <string>Valor TBS</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="6" colspan="2">
-        <widget class="QLabel" name="label_15">
-         <property name="text">
-          <string>N RE</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_14">
-         <property name="text">
-          <string>TBS Index</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="4">
-        <widget class="QLineEdit" name="outputModulacao">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="8">
-        <widget class="QLabel" name="label_16">
-         <property name="text">
-          <string>Qtd. Simbolos</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="8">
-        <widget class="QLineEdit" name="outputQtdSimbolos">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="Line" name="line_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="2" column="1" rowspan="2" colspan="2">
+    <item row="2" column="0" rowspan="2" colspan="2">
      <widget class="QFrame" name="inputDataFrame">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">border: 2px solid #8f8f91; background: </string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -167,6 +32,9 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="3" column="4">
         <widget class="QLabel" name="label_5">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
          <property name="text">
           <string>Mimo</string>
          </property>
@@ -207,15 +75,13 @@
            <string>20</string>
           </property>
          </item>
-         <item>
-          <property name="text">
-           <string>100</string>
-          </property>
-         </item>
         </widget>
        </item>
        <item row="3" column="2">
         <widget class="QLabel" name="label_3">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
          <property name="text">
           <string>MCS</string>
          </property>
@@ -226,6 +92,9 @@
        </item>
        <item row="3" column="6">
         <widget class="QLabel" name="label_2">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
          <property name="text">
           <string>CP</string>
          </property>
@@ -399,6 +268,9 @@
        </item>
        <item row="3" column="1">
         <widget class="QLabel" name="label_4">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
          <property name="text">
           <string>Banda (MHz)</string>
          </property>
@@ -433,6 +305,9 @@
        </item>
        <item row="3" column="8">
         <widget class="QLabel" name="label_6">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
          <property name="text">
           <string>CA</string>
          </property>
@@ -489,6 +364,9 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
          <property name="text">
           <string>Parametros de Entrada</string>
          </property>
@@ -497,51 +375,7 @@
       </layout>
      </widget>
     </item>
-    <item row="8" column="2">
-     <widget class="QPushButton" name="btnCalcTPut">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;</string>
-      </property>
-      <property name="text">
-       <string>Calcular</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="2">
-     <widget class="QLabel" name="label_8">
-      <property name="font">
-       <font>
-        <family>Segoe UI</family>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Equacao</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="2">
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1" colspan="2">
+    <item row="6" column="0" colspan="2">
      <widget class="QLabel" name="label_10">
       <property name="font">
        <font>
@@ -559,17 +393,194 @@
       </property>
      </widget>
     </item>
-    <item row="13" column="2">
-     <widget class="QLineEdit" name="outputEquacao">
+    <item row="5" column="0" colspan="2">
+     <widget class="QFrame" name="outputParamsDataFrame">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid #8f8f91;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="outputTbsIndex">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLineEdit" name="ouputTbsValue">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4" colspan="2">
+        <widget class="QLabel" name="label_13">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string>Modulacao</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLineEdit" name="outputPRB">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_17">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string>Parametros de Saida</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="6">
+        <widget class="QLineEdit" name="outputNumRE">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string>PRB</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" colspan="2">
+        <widget class="QLabel" name="label_12">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string>Valor TBS</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="6" colspan="2">
+        <widget class="QLabel" name="label_15">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string>N RE</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_14">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string>TBS Index</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4">
+        <widget class="QLineEdit" name="outputModulacao">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="8">
+        <widget class="QLabel" name="label_16">
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string>Qtd. Simbolos</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="8">
+        <widget class="QLineEdit" name="outputQtdSimbolos">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="Line" name="line_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="8" column="0" colspan="2">
+     <widget class="QPushButton" name="btnCalcTPut">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+      border: 2px solid #4CAF50;
+      border-radius: 6px;
+      background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #f6f7fa, stop: 1 #dadbde);
+      min-width: 80px;
+      padding: 15px 32px;
+  }
+
+QPushButton:pressed {
+      background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #dadbde, stop: 1 #f6f7fa);
+  }</string>
+      </property>
+      <property name="text">
+       <string>Calcular</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1" colspan="2">
+    <item row="0" column="0" colspan="2">
      <widget class="QLabel" name="label">
       <property name="font">
        <font>
@@ -587,7 +598,50 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="2">
+    <item row="11" column="0" colspan="2">
+     <widget class="QLineEdit" name="outputTabela">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid #8f8f91; padding: 2px 2px;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="0" colspan="2">
+     <widget class="QLineEdit" name="outputEquacao">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid #8f8f91; padding: 2px 2px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0" colspan="2">
      <widget class="QLabel" name="label_7">
       <property name="font">
        <font>
@@ -597,6 +651,9 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="text">
        <string>Tabela</string>
       </property>
@@ -605,16 +662,28 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="2">
-     <widget class="QLineEdit" name="outputTabela">
-      <property name="enabled">
-       <bool>false</bool>
+    <item row="12" column="0" colspan="2">
+     <widget class="QLabel" name="label_8">
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
-      <property name="styleSheet">
-       <string notr="true"/>
+      <property name="text">
+       <string>Equacao</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="0" colspan="2">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
