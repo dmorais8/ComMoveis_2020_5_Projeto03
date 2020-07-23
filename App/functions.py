@@ -1,11 +1,13 @@
 import numpy as np
 from pathlib import Path
 
+# DICIONARIO CONTENDO A QUANTIDADE DE SIMBOLOS POR TIPO DO PREFIXO CILICO (NORMAL OU EXTENDIDO)
 CYCLIC_PREFIX = {
     'Normal': {'SYMBOLS': 7},
     'Extendido': {'SYMBOLS': 6}
 }
 
+# DICIONARIO CONTENDO QUANTIDADE DE RESOURCE BLOCKS POR LARGURA DE BANDA UTILIZADA
 PRB_PER_BW = {
     '1.4': (1.4, 6),
     '3': (3, 15),
@@ -17,6 +19,8 @@ PRB_PER_BW = {
 
 }
 
+# DICIONARIO QUE MAPEIA A QUANTIDADE DE SIMBOLOS DA MODULACAO UTILIZADA, A TAXA DE CODIFICACAO E O INDICE DA TABELA TBS
+# PELO VALOR DO MCS INDICAO NA INTERFACE
 MODULATION_AND_CODE_RATE = {
     '0': {'MOD': 2, 'CR': 0.1172, 'TBSINDEX': 0}, '1': {'MOD': 2, 'CR': 0.1533, 'TBSINDEX': 1},
     '2': {'MOD': 2, 'CR': 0.1884, 'TBSINDEX': 2}, '3': {'MOD': 2, 'CR': 0.2451, 'TBSINDEX': 3},
@@ -35,16 +39,29 @@ MODULATION_AND_CODE_RATE = {
     '28': {'MOD': 6, 'CR': 0.9257, 'TBSINDEX': 26}
 }
 
+# DICIONARIO QUE CONTEM O VALOR DO MIMO
 MIMO = {'1': 1, '2': 2, '4': 4, '8': 8}
 
+# PEGA O CAMINHO DO ARQUIVO QUE CONTEM A TABELA DE MCSxPRBs
 data_folder = Path("assets/")
 csv_file = data_folder / "tbs_size_table.csv"
 
+# CONVERTE A TABELA ACIMA EM UM ARRAY PARA FACIL ACESSO.
 tbs_size_table = np.genfromtxt(csv_file, delimiter=",", skip_header=1, dtype=int)
 
 
 def calc_lte_troughtput(bandwidth, mcs, mimo_type, cyclic_prefix_type, component_carriers):
 
+    """
+    Funcao que realiza o calculo do throughput usando a tabela da norma e a equacao.
+
+    :param bandwidth: Largura de banda
+    :param mcs: MSC
+    :param mimo_type: Tipo do mimo utilizado
+    :param cyclic_prefix_type: Prefixo ciclico
+    :param component_carriers: Carrier Agregation
+    :return: dict()
+    """
     num_prbs = PRB_PER_BW[bandwidth][1]
     tbs_index = MODULATION_AND_CODE_RATE[mcs]['TBSINDEX']
     bits_from_tbs_size_table = tbs_size_table[tbs_index, int(num_prbs)]
@@ -52,8 +69,11 @@ def calc_lte_troughtput(bandwidth, mcs, mimo_type, cyclic_prefix_type, component
     cyclic_prefix = CYCLIC_PREFIX[cyclic_prefix_type]['SYMBOLS']
     ca = int(component_carriers)
     nre = 12 * cyclic_prefix
+
+    # Calculo pela tabela
     troughput_table = (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3
 
+    # Calculo pela equacao
     troughput_equation = (nre * MODULATION_AND_CODE_RATE[mcs]["MOD"] * mimo * 2 * num_prbs * 0.75 * ca) / 1_000
 
     return {
