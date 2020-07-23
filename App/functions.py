@@ -1,13 +1,12 @@
-import sys
 import numpy as np
 from pathlib import Path
 
 CYCLIC_PREFIX = {
-    'Normal': {'SYMBOLS': 6},
-    'Extendido': {'SYMBOLS': 7}
+    'Normal': {'SYMBOLS': 7},
+    'Extendido': {'SYMBOLS': 6}
 }
 
-BANDWITH = {
+PRB_PER_BW = {
     '1.4': (1.4, 6),
     '3': (3, 15),
     '5': (5, 25),
@@ -40,12 +39,23 @@ MIMO = {'1': 1, '2': 2, '4': 4, '8': 8}
 data_folder = Path("assets/")
 csv_file = data_folder / "TBSPRB.csv"
 
-numpy_array = np.genfromtxt(csv_file, delimiter=",", skip_header=1, dtype=int)
+tbs_size_table = np.genfromtxt(csv_file, delimiter=",", skip_header=1, dtype=int)
 
 
-def imprime():
-    print(numpy_array)
+def calc_troughtput_from_table(bandwidth, mcs, mimo_type, cyclic_prefix_type, component_carriers):
 
+    num_prbs = PRB_PER_BW[bandwidth][1]
+    tbs_index = MODULATION_AND_CODE_RATE[mcs]['TBSINDEX']
+    bits_from_tbs_size_table = tbs_size_table[tbs_index, int(num_prbs)]
+    mimo = MIMO[mimo_type]
+    cyclic_prefix = CYCLIC_PREFIX[cyclic_prefix_type]['SYMBOLS']
+    ca = int(component_carriers)
 
-imprime()
-print()
+    print(f'PRBS: {num_prbs}')
+    print(f'TBSINDEX: {tbs_index}')
+    print(f'BITS: {bits_from_tbs_size_table}')
+    print(f'MODULATION: {MODULATION_AND_CODE_RATE[mcs]["MOD"]}')
+    print(f'CP: {cyclic_prefix}')
+
+    return (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3
+

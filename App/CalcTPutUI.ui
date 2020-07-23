@@ -237,7 +237,7 @@
         </widget>
        </item>
        <item row="4" column="2">
-        <widget class="QComboBox" name="combosLarguaBanda">
+        <widget class="QComboBox" name="comboMCS">
          <item>
           <property name="text">
            <string>0</string>
