@@ -1,5 +1,5 @@
 import sys
-from CalcTPutUI import *
+from Interface.CalcTPutUI import *
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from functions import calc_lte_troughtput
 
