@@ -7,8 +7,12 @@
 - CHANGELOG
 - Documentacao
 
-## [1.0.1] - 2020-07-24
+## [1.0.1] - 2020-07-23
 ### Adicionado
 - Informe de depencias do projeto da documentacao (README.txt)
 - Comentarios para tornar o codigo mais legivel
 - Formatacao de linhas.
+
+## [1.0.2] - 2020-07-23
+### Corrigido
+- Retirando banda de 100MHz do combobox de banda
