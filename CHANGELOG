@@ -23,3 +23,9 @@
 ### Corrigido
 - Tratamento de execao na classe principal.
 - Documentacao
+
+## [1.0.4] - 2020-07-24
+### Removido
+- import denecessario
+### Corrigido
+- Documentacao de execucao do programa no linux.
