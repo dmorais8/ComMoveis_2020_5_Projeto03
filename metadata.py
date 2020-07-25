@@ -5,5 +5,5 @@ __copyright__ = "Copyright 2020, LTE-Advanced Calculator"
 __credits__ = ["David Morais"]
 __maintainer__ = "David Morais"
 __email__ = "moraisdavid8@gmail.com"
-__status__ = "Stable"
-__version__ = "1.0.4"
+__status__ = "develop"
+__version__ = "latest"
