@@ -69,7 +69,9 @@ EXECUTANDO O PROJETO
     Dentro do diretorio raiz do projeto, faca:
 
     Windows:
+        - cd App
         - python App\app.py
 
     Linux:
+        - cd App
         - python App/app.py
