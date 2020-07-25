@@ -16,3 +16,10 @@
 ## [1.0.2] - 2020-07-23
 ### Corrigido
 - Retirando banda de 100MHz do combobox de banda
+
+## [1.0.3] - 2020-07-24
+### Adicionado
+- Icone de janela principal
+### Corrigido
+- Tratamento de execao na classe principal.
+- Documentacao
