@@ -6,4 +6,4 @@ __credits__ = ["David Morais"]
 __maintainer__ = "David Morais"
 __email__ = "moraisdavid8@gmail.com"
 __status__ = "Stable"
-__version__ = "1.0.3"
+__version__ = "1.0.4"
