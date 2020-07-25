@@ -1,7 +1,14 @@
 import sys
-from Interface.CalcTPutUI import *
+from pathlib import Path
+
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QApplication
+
+from Interface.CalcTPutUI import *
 from functions import calc_lte_troughtput
+
+data_folder = Path("assets/")
+icon = data_folder / "lte-icon.png"
 
 
 class CalcTPUT(QMainWindow, Ui_MainWindow):
@@ -15,6 +22,7 @@ class CalcTPUT(QMainWindow, Ui_MainWindow):
         super().__init__(parent)
         super().setupUi(self)
         self.setWindowTitle('Calculadora LTE-Advanced')
+        self.setWindowIcon(QIcon("lte-icon.png"))
 
         # Pega o acionamento do bota Calcular da inteface e chama metodo calc_button_action()
         self.btnCalcTPut.clicked.connect(self.calc_button_action)
@@ -36,26 +44,31 @@ class CalcTPUT(QMainWindow, Ui_MainWindow):
         # Executa o calculo do throughput por meio da funcao calc_lte_troughtput
         calc_data = calc_lte_troughtput(bandwidth, mcs, mimo, cp, ca)
 
-        self.outputPRB.setAlignment(QtCore.Qt.AlignCenter)
-        self.outputPRB.setText(str(calc_data['PRBS']))
+        try:
 
-        self.outputTbsIndex.setAlignment(QtCore.Qt.AlignCenter)
-        self.outputTbsIndex.setText(str(calc_data['TBSINDEX']))
+            self.outputPRB.setAlignment(QtCore.Qt.AlignCenter)
+            self.outputPRB.setText(str(calc_data['PRBS']))
 
-        self.ouputTbsValue.setAlignment(QtCore.Qt.AlignCenter)
-        self.ouputTbsValue.setText(str(calc_data['TBSVALUE']))
+            self.outputTbsIndex.setAlignment(QtCore.Qt.AlignCenter)
+            self.outputTbsIndex.setText(str(calc_data['TBSINDEX']))
 
-        self.outputModulacao.setAlignment(QtCore.Qt.AlignCenter)
-        self.outputModulacao.setText(str(calc_data['MODULATION']) + 'QAM' if calc_data['MODULATION'] >= 16 else 'QPSK')
+            self.ouputTbsValue.setAlignment(QtCore.Qt.AlignCenter)
+            self.ouputTbsValue.setText(str(calc_data['TBSVALUE']))
 
-        self.outputNumRE.setAlignment(QtCore.Qt.AlignCenter)
-        self.outputNumRE.setText(str(calc_data['NRE']))
+            self.outputModulacao.setAlignment(QtCore.Qt.AlignCenter)
+            self.outputModulacao.setText(str(calc_data['MODULATION']) + 'QAM' if calc_data['MODULATION'] >= 16 else 'QPSK')
 
-        self.outputQtdSimbolos.setAlignment(QtCore.Qt.AlignCenter)
-        self.outputQtdSimbolos.setText(str(calc_data['SYMBOLSQTD']))
+            self.outputNumRE.setAlignment(QtCore.Qt.AlignCenter)
+            self.outputNumRE.setText(str(calc_data['NRE']))
 
-        self.outputTabela.setText(f'{calc_data["TROUGHPUT_TABLE"]} Mbps')
-        self.outputEquacao.setText(f'{calc_data["TROUGHPUT_EQUATION"]} Mbps')
+            self.outputQtdSimbolos.setAlignment(QtCore.Qt.AlignCenter)
+            self.outputQtdSimbolos.setText(str(calc_data['SYMBOLSQTD']))
+
+            self.outputTabela.setText(f'{calc_data["TROUGHPUT_TABLE"]} Mbps')
+            self.outputEquacao.setText(f'{calc_data["TROUGHPUT_EQUATION"]} Mbps')
+
+        except TypeError as e:
+            sys.exit(1)
 
 
 if __name__ == '__main__':

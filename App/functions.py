@@ -1,5 +1,7 @@
 import numpy as np
+import sys
 from pathlib import Path
+
 
 # DICIONARIO CONTENDO A QUANTIDADE DE SIMBOLOS POR TIPO DO PREFIXO CILICO (NORMAL OU EXTENDIDO)
 CYCLIC_PREFIX = {
@@ -42,13 +44,6 @@ MODULATION_AND_CODE_RATE = {
 # DICIONARIO QUE CONTEM O VALOR DO MIMO
 MIMO = {'1': 1, '2': 2, '4': 4, '8': 8}
 
-# PEGA O CAMINHO DO ARQUIVO QUE CONTEM A TABELA DE MCSxPRBs
-data_folder = Path("assets/")
-csv_file = data_folder / "tbs_size_table.csv"
-
-# CONVERTE A TABELA ACIMA EM UM ARRAY PARA FACIL ACESSO.
-tbs_size_table = np.genfromtxt(csv_file, delimiter=",", skip_header=1, dtype=int)
-
 
 def calc_lte_troughtput(bandwidth, mcs, mimo_type, cyclic_prefix_type, component_carriers):
 
@@ -62,27 +57,42 @@ def calc_lte_troughtput(bandwidth, mcs, mimo_type, cyclic_prefix_type, component
     :param component_carriers: Carrier Agregation
     :return: dict()
     """
-    num_prbs = PRB_PER_BW[bandwidth][1]
-    tbs_index = MODULATION_AND_CODE_RATE[mcs]['TBSINDEX']
-    bits_from_tbs_size_table = tbs_size_table[tbs_index, int(num_prbs)]
-    mimo = MIMO[mimo_type]
-    cyclic_prefix = CYCLIC_PREFIX[cyclic_prefix_type]['SYMBOLS']
-    ca = int(component_carriers)
-    nre = 12 * cyclic_prefix
 
-    # Calculo pela tabela
-    troughput_table = (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3
+    try:
+        # PEGA O CAMINHO DO ARQUIVO QUE CONTEM A TABELA DE MCSxPRBs
+        data_folder = Path("assets/")
+        csv_file = data_folder / "tbs_size_table.csv"
 
-    # Calculo pela equacao
-    troughput_equation = (nre * MODULATION_AND_CODE_RATE[mcs]["MOD"] * mimo * 2 * num_prbs * 0.75 * ca) / 1_000
+        # CONVERTE A TABELA ACIMA EM UM ARRAY PARA FACIL ACESSO.
+        tbs_size_table = np.genfromtxt(csv_file, delimiter=",", skip_header=1, dtype=int)
 
-    return {
-        'TROUGHPUT_TABLE': float(f'{troughput_table:.2f}'),
-        'TROUGHPUT_EQUATION': float(f'{troughput_equation:.2f}'),
-        'PRBS': num_prbs,
-        'TBSINDEX': tbs_index,
-        'TBSVALUE': bits_from_tbs_size_table,
-        'MODULATION': 2 ** MODULATION_AND_CODE_RATE[mcs]["MOD"],
-        'NRE': nre,
-        'SYMBOLSQTD': cyclic_prefix
-    }
+        num_prbs = PRB_PER_BW[bandwidth][1]
+        tbs_index = MODULATION_AND_CODE_RATE[mcs]['TBSINDEX']
+        bits_from_tbs_size_table = tbs_size_table[tbs_index, int(num_prbs)]
+        mimo = MIMO[mimo_type]
+        cyclic_prefix = CYCLIC_PREFIX[cyclic_prefix_type]['SYMBOLS']
+        ca = int(component_carriers)
+        nre = 12 * cyclic_prefix
+
+        # Calculo pela tabela
+        troughput_table = (bits_from_tbs_size_table * ca * mimo * cyclic_prefix) / 7e3
+
+        # Calculo pela equacao
+        troughput_equation = (nre * MODULATION_AND_CODE_RATE[mcs]["MOD"] * mimo * 2 * num_prbs * 0.75 * ca) / 1_000
+
+        return {
+            'TROUGHPUT_TABLE': float(f'{troughput_table:.2f}'),
+            'TROUGHPUT_EQUATION': float(f'{troughput_equation:.2f}'),
+            'PRBS': num_prbs,
+            'TBSINDEX': tbs_index,
+            'TBSVALUE': bits_from_tbs_size_table,
+            'MODULATION': 2 ** MODULATION_AND_CODE_RATE[mcs]["MOD"],
+            'NRE': nre,
+            'SYMBOLSQTD': cyclic_prefix
+        }
+
+    except OSError as e:
+        print(f'Exception: {e}')
+        print('Voce nao se encontra no diretorio correto.')
+        print('Acesse ltecalculator/App e execute: python app.py')
+
