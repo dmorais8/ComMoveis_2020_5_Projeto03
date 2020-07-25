@@ -57,7 +57,7 @@ PREPARANDO O AMBIENTE:
     No terminal.
 
         cd projeto02
-        sudo apt-get install python3-venv python3-tk
+        sudo apt-get install python3-venv python3-tk libxkbcommon-x11-0 libx11-xcb1 libxcb-xinerama0
         python3 -m venv venv
         source venv/bin/activate
         pip install -r requirements.txt
@@ -66,12 +66,12 @@ PREPARANDO O AMBIENTE:
 
 EXECUTANDO O PROJETO
 
-    Dentro do diretorio raiz do projeto, faca:
+    Dentro do diretorio raiz do projeto (ltecalculator), faca:
 
     Windows:
         - cd App
-        - python App\app.py
+        - python app.py
 
     Linux:
         - cd App
-        - python App/app.py
+        - python app.py
